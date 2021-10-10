@@ -15,10 +15,10 @@ name: SDG use case
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 env:
   tf_backend_container_name: tfstate
@@ -33,7 +33,7 @@ jobs:
   validate:
     runs-on: [ self-hosted, ubuntu-latest, eastus ]
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       - name: Format check
         run: |
           terraform fmt --recursive -check=true
