@@ -31,7 +31,7 @@ jobs:
 # - pre-commit
 # - etc.
   validate:
-    runs-on: [ self-hosted, ubuntu-latest, eastus ]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
       - name: Format check
