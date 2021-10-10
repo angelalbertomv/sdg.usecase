@@ -3,6 +3,7 @@ provider "azurerm" {
   # If you are using version 1.x, the "features" block is not allowed.
   version = "~>2.0"
   features {}
+  skip_provider_registration = true
 }
 
 terraform {
