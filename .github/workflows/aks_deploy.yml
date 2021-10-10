@@ -47,8 +47,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: 0.13.x
-        terraform_wrapper: true
+        terraform_version: 0.14.x
     - name: Setup Github credentials
       run: |
         cat << EOF > .git/credentials
@@ -98,6 +97,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.14.x
     - name: Apply
       working-directory: aks_deploy
       run: |
