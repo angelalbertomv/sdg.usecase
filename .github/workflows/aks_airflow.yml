@@ -43,4 +43,4 @@ jobs:
       run: |
         helm repo add apache-airflow https://airflow.apache.org
         helm upgrade -i airflow apache-airflow/airflow --namespace airflow
-        kubectl apply -f airflow_ingress.yml
+        kubectl apply -f airflow_ingress.yml -n airflow
