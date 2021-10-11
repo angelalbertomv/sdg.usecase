@@ -1,5 +1,10 @@
-variable "client_id" {}
-variable "client_secret" {}
+variable "client_id" {
+  default = "bb19071b-61f3-4b5b-92dd-f3c8fef1f663"
+}
+
+variable "akv_id" {
+  default = "/subscriptions/013baf31-283f-4e64-a3e2-2e638a891d02/resourceGroups/sdgusecase/providers/Microsoft.KeyVault/vaults/akvsdgusecase/secrets"
+}
 
 variable "agent_count" {
   default = 3

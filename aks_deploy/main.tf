@@ -27,6 +27,12 @@ resource "azurerm_log_analytics_workspace" "law" {
   sku                 = var.log_analytics_workspace_sku
 }
 
+data "azurerm_key_vault_secret" "client_secret" {
+  name         = var.client_id
+  key_vault_id = "/subscriptions/013baf31-283f-4e64-a3e2-2e638a891d02/resourceGroups/sdgusecase/providers/Microsoft.KeyVault/vaults/akvsdgusecase/secrets"
+}
+
+
 resource "azurerm_log_analytics_solution" "las" {
   solution_name         = "ContainerInsights"
   location              = azurerm_log_analytics_workspace.test.location
