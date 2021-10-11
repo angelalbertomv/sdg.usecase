@@ -38,7 +38,8 @@ jobs:
       uses: azure/setup-helm@v1
       with:
         version: '3.5.2'
-    - name: Deploy Ingress
+    - name: Deploy Airflow
+      working-directory: aks_airflow_deploy    
       run: |
         helm repo add apache-airflow https://airflow.apache.org
-        helm install airflow apache-airflow/airflow --namespace airflow
+        helm install airflow apache-airflow/airflow --namespace airflow -f airflow_values.yml
