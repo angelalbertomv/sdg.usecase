@@ -6,7 +6,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: zu1_pro
+    environment: master
     env:
       NAMESPACE: ingress-nginx      
     steps:
