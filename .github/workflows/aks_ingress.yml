@@ -44,9 +44,6 @@ jobs:
         CHART_DESC: idveureka
         VALUES_NAME: obf-discovery-service/values.yaml
       run: |
-        # Create a namespace for your ingress resources
-        kubectl create namespace ingress-nginx
-
         # Add the ingress-nginx repository
         helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 
