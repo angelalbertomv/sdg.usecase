@@ -35,10 +35,10 @@ data "azurerm_key_vault_secret" "client_secret" {
 
 resource "azurerm_log_analytics_solution" "las" {
   solution_name         = "ContainerInsights"
-  location              = azurerm_log_analytics_workspace.test.location
+  location              = azurerm_log_analytics_workspace.law.location
   resource_group_name   = azurerm_resource_group.k8s.name
-  workspace_resource_id = azurerm_log_analytics_workspace.test.id
-  workspace_name        = azurerm_log_analytics_workspace.test.name
+  workspace_resource_id = azurerm_log_analytics_workspace.law.id
+  workspace_name        = azurerm_log_analytics_workspace.law
 
   plan {
     publisher = "Microsoft"
@@ -74,7 +74,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   addon_profile {
     oms_agent {
       enabled                    = true
-      log_analytics_workspace_id = azurerm_log_analytics_workspace.test.id
+      log_analytics_workspace_id = azurerm_log_analytics_workspace.law.id
     }
   }
 
