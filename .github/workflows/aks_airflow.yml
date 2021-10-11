@@ -1,4 +1,4 @@
-name: AKS Ingress Deploy
+name: AKS Airflow Deploy
 
 on:
   workflow_dispatch
@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: master
     env:
-      NAMESPACE: ingress-nginx      
+      NAMESPACE: airflow
     steps:
     - name: Check environment variables
       run: |
@@ -40,10 +40,6 @@ jobs:
         version: '3.5.2'
     - name: Deploy Ingress
       run: |
-        # Add the ingress-nginx repository
-        helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-
-        # Use Helm to deploy an NGINX ingress controller
-        helm install nginx-ingress ingress-nginx/ingress-nginx \
-            --namespace ingress-nginx \
-            --set controller.replicaCount=1 \
+        kubectl create namespace airflow
+        helm repo add apache-airflow https://airflow.apache.org
+        helm install airflow apache-airflow/airflow --namespace airflow
