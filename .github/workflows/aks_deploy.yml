@@ -13,12 +13,7 @@
 name: SDG use case
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch
 
 env:
   tf_backend_container_name: tfstate
