@@ -12,7 +12,6 @@ terraform {
 
 data "azurerm_resource_group" "k8s" {
   name     = var.resource_group_name
-  location = var.location
 }
 
 resource "random_id" "log_analytics_workspace_name_suffix" {
@@ -29,7 +28,7 @@ resource "azurerm_log_analytics_workspace" "law" {
 
 data "azurerm_key_vault_secret" "client_secret" {
   name         = var.client_id
-  key_vault_id = "/subscriptions/013baf31-283f-4e64-a3e2-2e638a891d02/resourceGroups/sdgusecase/providers/Microsoft.KeyVault/vaults/akvsdgusecase/secrets"
+  key_vault_id = var.akv_id
 }
 
 
