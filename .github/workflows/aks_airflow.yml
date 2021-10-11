@@ -43,4 +43,5 @@ jobs:
       run: |
         helm repo add apache-airflow https://airflow.apache.org
         helm uninstall airflow --namespace airflow
-        helm install airflow apache-airflow/airflow --namespace airflow -f airflow_values.yml
+        #helm install airflow apache-airflow/airflow --namespace airflow -f airflow_values.yml
+        helm install airflow apache-airflow/airflow --namespace airflow
