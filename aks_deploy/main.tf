@@ -37,7 +37,7 @@ resource "azurerm_log_analytics_solution" "las" {
   location              = azurerm_log_analytics_workspace.law.location
   resource_group_name   = data.azurerm_resource_group.k8s.name
   workspace_resource_id = azurerm_log_analytics_workspace.law.id
-  workspace_name        = azurerm_log_analytics_workspace.law
+  workspace_name        = azurerm_log_analytics_workspace.law.name
 
   plan {
     publisher = "Microsoft"
