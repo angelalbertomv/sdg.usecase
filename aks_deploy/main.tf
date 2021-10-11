@@ -23,7 +23,7 @@ resource "azurerm_log_analytics_workspace" "law" {
   # The WorkSpace name has to be unique across the whole of azure, not just the current subscription/tenant.
   name                = "${var.log_analytics_workspace_name}-${random_id.log_analytics_workspace_name_suffix.dec}"
   location            = var.log_analytics_workspace_location
-  resource_group_name = azurerm_resource_group.k8s.name
+  resource_group_name = data.azurerm_resource_group.k8s.name
   sku                 = var.log_analytics_workspace_sku
 }
 
@@ -36,7 +36,7 @@ data "azurerm_key_vault_secret" "client_secret" {
 resource "azurerm_log_analytics_solution" "las" {
   solution_name         = "ContainerInsights"
   location              = azurerm_log_analytics_workspace.law.location
-  resource_group_name   = azurerm_resource_group.k8s.name
+  resource_group_name   = data.azurerm_resource_group.k8s.name
   workspace_resource_id = azurerm_log_analytics_workspace.law.id
   workspace_name        = azurerm_log_analytics_workspace.law
 
@@ -48,8 +48,8 @@ resource "azurerm_log_analytics_solution" "las" {
 
 resource "azurerm_kubernetes_cluster" "k8s" {
   name                = var.cluster_name
-  location            = azurerm_resource_group.k8s.location
-  resource_group_name = azurerm_resource_group.k8s.name
+  location            = data.azurerm_resource_group.k8s.location
+  resource_group_name = data.azurerm_resource_group.k8s.name
   dns_prefix          = var.dns_prefix
 
   linux_profile {
