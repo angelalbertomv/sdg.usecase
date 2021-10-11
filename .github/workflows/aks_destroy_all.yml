@@ -29,6 +29,7 @@ jobs:
       with:
         terraform_version: 0.14.x
     - name: Destroy
+      working-directory: aks_deploy    
       run: |
         terraform init -no-color -backend-config=container_name=${{ env.tf_backend_container_name }} -backend-config=key=${{ env.tf_backend_tfstate_name }} \
           -backend-config=storage_account_name=$ARM_BACKEND_NAME -backend-config=resource_group_name=$ARM_BACKEND_RG \
