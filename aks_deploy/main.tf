@@ -11,7 +11,7 @@ terraform {
 }
 
 data "azurerm_resource_group" "k8s" {
-  name     = var.resource_group_name
+  name = var.resource_group_name
 }
 
 resource "random_id" "log_analytics_workspace_name_suffix" {
