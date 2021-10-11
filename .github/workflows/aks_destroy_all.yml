@@ -1,16 +1,4 @@
-# # # # # # # # # # # # #   DEV deployment   # # # # # # # # # # # # #
-#
-# Deploys terraform configuration in `master` branch to DEV environment
-# 
-# You need to create an Environment named `DEV` with the next secrets:
-#   - ARM_BACKEND_NAME: ${{ secrets.ARM_BACKEND_NAME }}
-#   - ARM_BACKEND_RG: ${{ secrets.ARM_BACKEND_RG }}
-#   - ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-#   - ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-#   - ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-#   - ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-name: AKS destroy
+name: AKS Destroy
 
 on:
   workflow_dispatch

@@ -1,0 +1,56 @@
+name: AKS Ingress Deploy
+
+on:
+  workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: zu1_pro
+    env:
+      NAMESPACE: ingress-nginx      
+    steps:
+    - name: Check environment variables
+      run: |
+        if [ "${{ env.NAMESPACE}}" = "example-0" ] && [ "${{ github.event.repository.name }}" != "deploy-k8s-apps" ]; then
+          echo "Change default environment variable NAMESPACE value"
+          exit -1       
+        fi
+        if [[ -z " ${{ secrets.K8S_FQDN }}" ]]; then
+          echo "Define environment variable K8S_FQDN in github environments"
+          exit -4
+        elif [[ -z "${{ secrets.K8S_TOKEN }}" ]]; then          
+         echo "Define environment variable K8S_TOKEN in github environments"
+          exit -5
+        fi  
+    - name: Clean helm directory
+      shell: bash
+      run: rm -rf ~/.helm
+    - name: Checkout
+      uses: actions/checkout@v2      
+    - name: Setup context k8s
+      uses: azure/k8s-set-context@v1
+      with:
+        method: service-account
+        k8s-url: ${{ secrets.K8S_FQDN }}
+        k8s-secret: "${{ secrets.K8S_TOKEN }}"
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: '3.5.2'
+    - name: Deploy Ingress
+      env:
+        CHART_NAME: obf-discovery-service/
+        CHART_DESC: idveureka
+        VALUES_NAME: obf-discovery-service/values.yaml
+      run: |
+        # Create a namespace for your ingress resources
+        kubectl create namespace ingress-nginx
+
+        # Add the ingress-nginx repository
+        helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+
+        # Use Helm to deploy an NGINX ingress controller
+        helm install nginx-ingress ingress-nginx/ingress-nginx \
+            --namespace ingress-nginx \
+            --set controller.replicaCount=1 \
