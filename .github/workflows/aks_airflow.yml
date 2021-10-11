@@ -42,5 +42,5 @@ jobs:
       working-directory: aks_airflow_deploy    
       run: |
         helm repo add apache-airflow https://airflow.apache.org
-        helm uninstall apache-airflow
+        helm uninstall airflow
         helm install airflow apache-airflow/airflow --namespace airflow -f airflow_values.yml
