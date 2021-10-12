@@ -40,10 +40,8 @@ jobs:
         version: '3.5.2'
     - name: Deploy Ingress
       run: |
-        # Add the ingress-nginx repository
+        kubectl create namespace ingress-nginx --dry-run=client -o yaml | kubectl apply -f -
         helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-
-        # Use Helm to deploy an NGINX ingress controller
         helm install nginx-ingress ingress-nginx/ingress-nginx \
             --namespace ingress-nginx \
             --set controller.replicaCount=1 \

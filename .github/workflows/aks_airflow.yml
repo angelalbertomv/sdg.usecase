@@ -41,6 +41,7 @@ jobs:
     - name: Deploy Airflow
       working-directory: aks_airflow_deploy    
       run: |
+        kubectl create namespace airflow --dry-run=client -o yaml | kubectl apply -f -
         helm repo add apache-airflow https://airflow.apache.org
         helm upgrade -i airflow apache-airflow/airflow --namespace airflow
         kubectl apply -f airflow_ingress.yml -n airflow
