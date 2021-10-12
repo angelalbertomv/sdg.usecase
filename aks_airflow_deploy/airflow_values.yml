@@ -104,7 +104,7 @@ ingress:
     annotations: {}
 
     # The path for the web Ingress
-    path: "/airflow/"
+    path: "/airflow"
 
     # The pathType for the above path (used only with Kubernetes v1.19 and above)
     pathType: "ImplementationSpecific"
@@ -113,7 +113,7 @@ ingress:
     host: ""
 
     # The hostnames for the web Ingress
-    hosts: []
+    hosts: ["sdgusecase.tk"]
 
     # The Ingress Class for the web Ingress (used only with Kubernetes v1.19 and above)
     ingressClassName: "nginx"
@@ -146,7 +146,7 @@ ingress:
     host: ""
 
     # The hostnames for the flower Ingress
-    hosts: []
+    hosts: ["sdgusecase.tk"]
 
     # The Ingress Class for the flower Ingress (used only with Kubernetes v1.19 and above)
     ingressClassName: "ingress"
