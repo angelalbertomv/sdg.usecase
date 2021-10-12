@@ -96,7 +96,7 @@ labels: {}
 # Ingress configuration
 ingress:
   # Enable ingress resource
-  enabled: false
+  enabled: true
 
   # Configs for the Ingress of the web Service
   web:
@@ -104,7 +104,7 @@ ingress:
     annotations: {}
 
     # The path for the web Ingress
-    path: "/"
+    path: "/airflow/"
 
     # The pathType for the above path (used only with Kubernetes v1.19 and above)
     pathType: "ImplementationSpecific"
@@ -113,10 +113,10 @@ ingress:
     host: ""
 
     # The hostnames for the web Ingress
-    hosts: []
+    hosts: ["20.86.207.247"]
 
     # The Ingress Class for the web Ingress (used only with Kubernetes v1.19 and above)
-    ingressClassName: ""
+    ingressClassName: "nginx"
 
     # configs for web Ingress TLS
     tls:
@@ -137,7 +137,7 @@ ingress:
     annotations: {}
 
     # The path for the flower Ingress
-    path: "/"
+    path: "/flower"
 
     # The pathType for the above path (used only with Kubernetes v1.19 and above)
     pathType: "ImplementationSpecific"
@@ -149,7 +149,7 @@ ingress:
     hosts: []
 
     # The Ingress Class for the flower Ingress (used only with Kubernetes v1.19 and above)
-    ingressClassName: ""
+    ingressClassName: "ingress"
 
     # configs for web Ingress TLS
     tls:

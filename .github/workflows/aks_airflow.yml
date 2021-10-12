@@ -44,4 +44,4 @@ jobs:
         kubectl create namespace airflow --dry-run=client -o yaml | kubectl apply -f -
         helm repo add apache-airflow https://airflow.apache.org
         helm upgrade -i airflow apache-airflow/airflow --namespace airflow -f airflow_values.yml
-        kubectl apply -f airflow_ingress.yml -n airflow
+        #kubectl apply -f airflow_ingress.yml -n airflow
