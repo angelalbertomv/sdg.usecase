@@ -80,6 +80,6 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 }
 
 resource "azurerm_dns_zone" "example-public" {
-  name                = "sdgusecas.tk"
+  name                = "sdgusecase.tk"
   resource_group_name = data.azurerm_resource_group.k8s.name
 }
