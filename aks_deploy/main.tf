@@ -83,7 +83,7 @@ resource "azurerm_dns_zone" "sdgusecase" {
   name                = "sdgusecase.tk"
   resource_group_name = data.azurerm_resource_group.k8s.name
 }
-
+/*
 resource "azurerm_dns_a_record" "aks" {
   name                = "aks"
   zone_name           = azurerm_dns_zone.sdgusecase.name
@@ -91,3 +91,4 @@ resource "azurerm_dns_a_record" "aks" {
   ttl                 = 300
   records             = ["20.103.185.63"]
 }
+*/
