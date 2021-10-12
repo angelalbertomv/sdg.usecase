@@ -1,4 +1,4 @@
-name: AKS Airflow Deploy
+name: AKS Deploy Airflow
 
 on:
   workflow_dispatch

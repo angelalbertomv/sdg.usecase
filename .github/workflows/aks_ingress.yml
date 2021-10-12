@@ -1,4 +1,4 @@
-name: AKS Ingress Deploy
+name: AKS Deploy Ingress
 
 on:
   workflow_dispatch
