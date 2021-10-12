@@ -113,7 +113,7 @@ ingress:
     host: ""
 
     # The hostnames for the web Ingress
-    hosts: ["20.86.207.247"]
+    hosts: []
 
     # The Ingress Class for the web Ingress (used only with Kubernetes v1.19 and above)
     ingressClassName: "nginx"
