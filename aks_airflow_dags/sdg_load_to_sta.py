@@ -52,15 +52,9 @@ with DAG(
 
     tolerations = [{'key': 'dedicated', 'operator': 'Equal', 'value': 'airflow'}]
     
-
-    # You don't have to use any special KubernetesExecutor configuration if you don't want to
-    start_task = PythonOperator(task_id="start_task", python_callable=print_stuff)
-
     # But you can if you want to
-    one_task = PythonOperator(
+    task = PythonOperator(
         task_id="one_task",
         python_callable=print_stuff,
         executor_config={"KubernetesExecutor": {"image": "docker.pkg.github.com/angelalbertomv/sdg.usecase/sdgusecasedag:1a6b7c6"}},
     )
-
-    start_task >> one_task
