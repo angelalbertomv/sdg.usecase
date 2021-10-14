@@ -20,16 +20,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.SECRET_TOKEN }}
-      - name: Lowercase repository name
+      - name: Docker build and push
+        working-directory: aks_airflow_dag_docker    
         run: |
-          echo "REPO=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
-      - name: Short the sha to 7 characters only
-        id: vars
-        run: echo ::set-output name=tag::$(echo ${GITHUB_SHA::7})
-      - name: Build and push to GitHub Packages         
-        uses: docker/build-push-action@v2        
-        with:
-          context: ./aks_airflow_dag_docker
-          file: ./aks_airflow_dag_docker/dockerfile
-          push: true
-          tags: ghcr.io/${{ env.REPO }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }}
+          docker build --tag="ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag" -t dag_image .
+          docker push ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag
