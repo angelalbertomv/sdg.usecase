@@ -30,7 +30,7 @@ args = {
 }
 
 with DAG(
-    dag_id='sdg_test_case',
+    dag_id='sdg_test_case_v01',
     default_args=args,
     schedule_interval=None,
     start_date=days_ago(2),
