@@ -30,6 +30,6 @@ jobs:
         uses: docker/build-push-action@v2        
         with:
           context: ./aks_airflow_dag_docker
-          file: dockerfile
+          file: ./aks_airflow_dag_docker/dockerfile
           push: true
           tags: docker.pkg.github.com/${{ env.REPO }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }}
