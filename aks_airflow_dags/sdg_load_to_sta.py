@@ -53,5 +53,5 @@ with DAG(
     task = PythonOperator(
         task_id="one_task",
         python_callable=print_stuff,
-        executor_config={"KubernetesExecutor": {"image": "ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag:latest"}},
+        executor_config={"KubernetesExecutor": {"image": "ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag:356acd7"}},
     )
