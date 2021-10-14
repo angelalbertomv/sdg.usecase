@@ -257,7 +257,7 @@ extraConfigMaps: {}
 # eg:
 extraEnv: |
   - name: AIRFLOW__CORE__LOAD_EXAMPLES
-    value: 'False'
+    value: 'True'
 
 # Extra envFrom 'items' that will be added to the definition of airflow containers
 # A string is expected (can be templated).
