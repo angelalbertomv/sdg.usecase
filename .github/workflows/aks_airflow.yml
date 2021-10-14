@@ -38,10 +38,14 @@ jobs:
       uses: azure/setup-helm@v1
       with:
         version: '3.5.2'
-    - name: Deploy Airflow
+    - name: Deploy Airflow Secret
       working-directory: aks_airflow_deploy    
       run: |
         kubectl create namespace airflow --dry-run=client -o yaml | kubectl apply -f -
+        kubectl create secret generic airflow-ssh-git-secret --from-file=gitSshKey=./pk.cer -n airflow          
+    - name: Deploy Airflow
+      working-directory: aks_airflow_deploy    
+      run: |
         helm repo add apache-airflow https://airflow.apache.org
         helm upgrade -i airflow apache-airflow/airflow --namespace airflow -f airflow_values.yml
         #kubectl apply -f airflow_ingress.yml -n airflow
