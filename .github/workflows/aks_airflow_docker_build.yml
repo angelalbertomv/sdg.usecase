@@ -23,5 +23,5 @@ jobs:
       - name: Docker build and push
         working-directory: aks_airflow_dag_docker    
         run: |
-          docker build --tag="ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag" -t dag_image .
-          docker push ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag
+          docker build --tag="ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag:test01" -t dag_image .
+          docker push ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag:test01
