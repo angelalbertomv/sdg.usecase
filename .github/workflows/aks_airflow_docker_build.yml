@@ -32,4 +32,4 @@ jobs:
           context: ./aks_airflow_dag_docker
           file: ./aks_airflow_dag_docker/dockerfile
           push: true
-          tags: docker.pkg.github.com/${{ env.REPO }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }}
+          tags: ghcr.io/${{ env.REPO }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }}
