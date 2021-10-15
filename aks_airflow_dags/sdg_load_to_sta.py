@@ -18,8 +18,7 @@
 import os
 
 from airflow import DAG
-from airflow.example_dags.libs.helper import print_stuff
-from airflow.operators.python import PythonOperator
+from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 from airflow.utils.dates import days_ago
 
 args = {
@@ -34,24 +33,9 @@ with DAG(
     tags=['SDG', 'USECASE'],
 ) as dag:
 
-    affinity = {
-        'podAntiAffinity': {
-            'requiredDuringSchedulingIgnoredDuringExecution': [
-                {
-                    'topologyKey': 'kubernetes.io/hostname',
-                    'labelSelector': {
-                        'matchExpressions': [{'key': 'app', 'operator': 'In', 'values': ['airflow']}]
-                    },
-                }
-            ]
-        }
-    }
-
-    tolerations = [{'key': 'dedicated', 'operator': 'Equal', 'value': 'airflow'}]
-    
-    # But you can if you want to
-    task = PythonOperator(
-        task_id="one_task",
-        python_callable=print_stuff,
-        executor_config={"KubernetesExecutor": {"image": "ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag:test01"}},
+    task = KubernetesPodOperator(
+        task_id='load_to_storage',
+        name='load_to_storage',        
+        namespace='airflow',
+        image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag:test01',
     )
