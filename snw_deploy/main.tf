@@ -64,7 +64,7 @@ resource "snowflake_table" "table" {
     name     = "test"
     type     = "text"
     nullable = false
-  }  
+  }
 
   column {
     name = "LOAD_DATE"
