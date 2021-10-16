@@ -10,66 +10,72 @@ terraform {
 provider "snowflake" {
   alias    = "sys_admin"
   role     = "SYSADMIN"
-  region   = "west-europe.azure"
-  account  = "kd23129"
-  username = "angelalbertomv"
-  password = ".Kirschner21"
 }
 
 locals {
   warehouse_name = "COMPUTE_WH"
+  schema_name = "SDG_USECASE"
+  database_name = "SDG_DB"
+  table_name = "adl_sdgtestcase"
 }
 
 resource "snowflake_database" "db" {
-  name = "TF_USECASE"
-}
-
-resource "snowflake_role" "role" {
-  name = "TF_DEMO_SDG_ROLE"
-}
-
-resource "snowflake_database_grant" "grant" {
-  database_name     = snowflake_database.db.name
-  privilege         = "USAGE"
-  roles             = [snowflake_role.role.name]
-  with_grant_option = false
+  name = local.database_name
 }
 
 resource "snowflake_schema" "schema" {
   database   = snowflake_database.db.name
-  name       = "TF_DEMO"
+  name       = local.schema_name
   is_managed = false
 }
 
-resource "snowflake_schema_grant" "grant" {
-  database_name     = snowflake_database.db.name
-  schema_name       = snowflake_schema.schema.name
-  privilege         = "USAGE"
-  roles             = [snowflake_role.role.name]
-  with_grant_option = false
+resource "snowflake_sequence" "sequence" {
+  database = snowflake_schema.schema.database
+  schema   = snowflake_schema.schema.name
+  name     = "sequence"
 }
 
-resource "snowflake_warehouse_grant" "grant" {
-  warehouse_name    = local.warehouse_name
-  privilege         = "USAGE"
-  roles             = [snowflake_role.role.name]
-  with_grant_option = false
-}
+resource "snowflake_table" "table" {
+  database            = snowflake_schema.schema.database
+  schema              = snowflake_schema.schema.name
+  name                = local.table_name
+  comment             = "SDG TEST CASE"
+  cluster_by          = ["to_date(DATE)"]
+  data_retention_days = snowflake_schema.schema.data_retention_days
+  change_tracking     = false
 
-resource "tls_private_key" "svc_key" {
-  algorithm = "RSA"
-  rsa_bits  = 2048
-}
+  column {
+    name     = "LOAD_ID"
+    type     = "int"
+    nullable = true
 
-resource "snowflake_user" "user" {
-  name              = "tf_demo_user"
-  default_warehouse = local.warehouse_name
-  default_role      = snowflake_role.role.name
-  default_namespace = "${snowflake_database.db.name}.${snowflake_schema.schema.name}"
-  rsa_public_key    = substr(tls_private_key.svc_key.public_key_pem, 27, 398)
-}
+    default {
+      sequence = snowflake_sequence.sequence.fully_qualified_name
+    }
+  }
 
-resource "snowflake_role_grants" "grants" {
-  role_name = snowflake_role.role.name
-  users     = [snowflake_user.user.name]
+  column {
+    name     = "BUSINESS_ID"
+    type     = "text"
+    nullable = false
+  }
+
+  column {
+    name = "LOAD_DATE"
+    type = "TIMESTAMP_NTZ(9)"
+    default {
+      expresion = current_timestamp()
+    }    
+  }
+
+  column {
+    name    = "PAYLOAD"
+    type    = "VARIANT"
+    comment = "extra data"
+  }
+
+  primary_key {
+    name = "my_key"
+    keys = ["LOAD_ID"]
+  }
 }
