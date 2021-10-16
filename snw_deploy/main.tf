@@ -46,7 +46,7 @@ resource "snowflake_schema_grant" "grant" {
 }
 
 resource "snowflake_warehouse_grant" "grant" {
-  warehouse_name    = locals.warehouse_name
+  warehouse_name    = local.warehouse_name
   privilege         = "USAGE"
   roles             = [snowflake_role.role.name]
   with_grant_option = false
@@ -59,7 +59,7 @@ resource "tls_private_key" "svc_key" {
 
 resource "snowflake_user" "user" {
   name              = "tf_demo_user"
-  default_warehouse = locals.warehouse_name
+  default_warehouse = local.warehouse_name
   default_role      = snowflake_role.role.name
   default_namespace = "${snowflake_database.db.name}.${snowflake_schema.schema.name}"
   rsa_public_key    = substr(tls_private_key.svc_key.public_key_pem, 27, 398)
