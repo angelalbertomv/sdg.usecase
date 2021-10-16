@@ -61,6 +61,12 @@ resource "snowflake_table" "table" {
   }
 
   column {
+    name     = "test"
+    type     = "text"
+    nullable = false
+  }  
+
+  column {
     name = "LOAD_DATE"
     type = "TIMESTAMP_NTZ(9)"
 
