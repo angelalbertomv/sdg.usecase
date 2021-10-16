@@ -49,7 +49,6 @@ jobs:
         SNOWFLAKE_PASSWORD: .Kirschner21
         SNOWFLAKE_USER: angelalbertomv
         SNOWFLAKE_ACCOUNT: kd23129
-        SNOWFLAKE_REGION: west-europe
         ARM_BACKEND_NAME: ${{ secrets.ARM_BACKEND_NAME }}
         ARM_BACKEND_RG: ${{ secrets.ARM_BACKEND_RG }}
         ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
