@@ -36,7 +36,7 @@ resource "snowflake_sequence" "sequence" {
 }
 
 resource "snowflake_table" "table" {
-  database        = snowflake_schema.db.name
+  database        = snowflake_database.db.name
   schema          = snowflake_schema.schema.name
   name            = local.table_name
   comment         = "SDG TEST CASE"
