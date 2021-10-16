@@ -8,15 +8,15 @@ terraform {
 }
 
 provider "snowflake" {
-  alias    = "sys_admin"
-  role     = "SYSADMIN"
+  alias = "sys_admin"
+  role  = "SYSADMIN"
 }
 
 locals {
   warehouse_name = "COMPUTE_WH"
-  schema_name = "SDG_USECASE"
-  database_name = "SDG_DB"
-  table_name = "adl_sdgtestcase"
+  schema_name    = "SDG_USECASE"
+  database_name  = "SDG_DB"
+  table_name     = "adl_sdgtestcase"
 }
 
 resource "snowflake_database" "db" {
@@ -65,7 +65,7 @@ resource "snowflake_table" "table" {
     type = "TIMESTAMP_NTZ(9)"
     default {
       expresion = current_timestamp()
-    }    
+    }
   }
 
   column {
