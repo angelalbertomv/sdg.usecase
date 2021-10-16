@@ -63,7 +63,7 @@ resource "snowflake_table" "table" {
     name = "LOAD_DATE"
     type = "TIMESTAMP_NTZ(9)"
     default {
-      expression = CURRENT_TIMESTAMP()
+      constant = CURRENT_TIMESTAMP()
     }
   }
 
