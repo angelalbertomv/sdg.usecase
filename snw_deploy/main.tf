@@ -8,12 +8,12 @@ terraform {
 }
 
 provider "snowflake" {
-  alias  = "sys_admin"
-  role   = "SYSADMIN"
-  region = "west-europe.azure"
-  account = "kd23129"
-  user = "angelalbertomv"
-  password = ".Kirschner21"                
+  alias    = "sys_admin"
+  role     = "SYSADMIN"
+  region   = "west-europe.azure"
+  account  = "kd23129"
+  user     = "angelalbertomv"
+  password = ".Kirschner21"
 }
 
 locals {
