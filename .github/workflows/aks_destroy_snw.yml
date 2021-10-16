@@ -1,0 +1,33 @@
+name: SNW Destroy
+
+on:
+  workflow_dispatch
+
+env:
+  tf_backend_container_name: tfstatesnw
+  tf_backend_tfstate_name: workload.tfstatesnw
+    
+jobs:         
+  destroy:
+    environment: master
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.14.x
+    - name: Destroy
+      working-directory: aks_deploy    
+      run: |
+        terraform init -no-color -backend-config=container_name=${{ env.tf_backend_container_name }} -backend-config=key=${{ env.tf_backend_tfstate_name }} \
+          -backend-config=storage_account_name=$ARM_BACKEND_NAME -backend-config=resource_group_name=$ARM_BACKEND_RG \
+          -backend-config=arm_subscription_id=$ARM_SUBSCRIPTION_ID -backend-config=arm_tenant_id=$ARM_TENANT_ID \
+          -backend-config=arm_client_id=$ARM_CLIENT_ID -backend-config=arm_client_secret=$ARM_CLIENT_SECRET
+        terraform destroy -force
+      env:
+        ARM_BACKEND_NAME: ${{ secrets.ARM_BACKEND_NAME }}
+        ARM_BACKEND_RG: ${{ secrets.ARM_BACKEND_RG }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+        ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
