@@ -1,4 +1,5 @@
 terraform {
+  backend "azurerm" {}
   required_providers {
     snowflake = {
       source  = "chanzuckerberg/snowflake"
