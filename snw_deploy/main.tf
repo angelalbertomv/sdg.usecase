@@ -46,7 +46,7 @@ resource "snowflake_schema_grant" "grant" {
 }
 
 resource "snowflake_warehouse_grant" "grant" {
-  warehouse_name    = snowflake_warehouse.warehouse.name
+  warehouse_name    = data.snowflake_warehouse.warehouse.name
   privilege         = "USAGE"
   roles             = [snowflake_role.role.name]
   with_grant_option = false
