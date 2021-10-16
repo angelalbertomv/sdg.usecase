@@ -12,7 +12,7 @@ provider "snowflake" {
   role     = "SYSADMIN"
   region   = "west-europe.azure"
   account  = "kd23129"
-  user     = "angelalbertomv"
+  username = "angelalbertomv"
   password = ".Kirschner21"
 }
 
