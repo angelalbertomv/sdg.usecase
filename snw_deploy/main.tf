@@ -35,12 +35,6 @@ resource "snowflake_sequence" "sequence" {
   name     = "sequence"
 }
 
-data "snowflake_functions" "current_timestamp" {
-  database = snowflake_database.db.name
-  schema   = snowflake_schema.schema.name
-  id       = "current_timestamp"
-}
-
 resource "snowflake_table" "table" {
   database        = snowflake_database.db.name
   schema          = snowflake_schema.schema.name
@@ -68,9 +62,7 @@ resource "snowflake_table" "table" {
   column {
     name = "LOAD_DATE"
     type = "TIMESTAMP_NTZ(9)"
-    default {
-      constant = data.snowflake_functions.current_timestamp
-    }
+
   }
 
   column {
