@@ -10,6 +10,7 @@ terraform {
 provider "snowflake" {
   alias = "sys_admin"
   role  = "SYSADMIN"
+  region   = "west-europe"
 }
 
 locals {
