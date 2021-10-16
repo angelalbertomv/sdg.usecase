@@ -36,12 +36,12 @@ resource "snowflake_sequence" "sequence" {
 }
 
 resource "snowflake_table" "table" {
-  database            = snowflake_schema.db.database
-  schema              = snowflake_schema.schema.name
-  name                = local.table_name
-  comment             = "SDG TEST CASE"
-  cluster_by          = ["to_date(DATE)"]
-  change_tracking     = false
+  database        = snowflake_schema.db.database
+  schema          = snowflake_schema.schema.name
+  name            = local.table_name
+  comment         = "SDG TEST CASE"
+  cluster_by      = ["to_date(DATE)"]
+  change_tracking = false
 
   column {
     name     = "LOAD_ID"
