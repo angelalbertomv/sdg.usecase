@@ -26,7 +26,7 @@ args = {
 }
 
 with DAG(
-    dag_id='sdg_test_case_copy_v01',
+    dag_id='sdg_test_case_dwhpropagation_v01',
     default_args=args,
     schedule_interval=None,
     start_date=days_ago(2),
