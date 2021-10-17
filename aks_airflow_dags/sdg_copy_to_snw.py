@@ -35,7 +35,7 @@ with DAG(
 
     task = KubernetesPodOperator(
         task_id='dwh_propagation',
-        name='DWH Propagation',        
+        name='dwh_propagation',        
         namespace='airflow',
         image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag1:test02',
     )
