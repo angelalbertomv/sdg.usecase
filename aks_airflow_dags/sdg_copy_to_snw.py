@@ -26,9 +26,7 @@ args = {
 }
 
 with DAG(
-    dag_id='sdg_test_case_loadsta_
-    
-    v01',
+    dag_id='sdg_test_case_copy_v01',
     default_args=args,
     schedule_interval=None,
     start_date=days_ago(2),
@@ -39,5 +37,5 @@ with DAG(
         task_id='load_to_storage',
         name='load_to_storage',        
         namespace='airflow',
-        image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag2:test02',
+        image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag1:test02',
     )

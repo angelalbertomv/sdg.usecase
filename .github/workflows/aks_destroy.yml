@@ -1,4 +1,4 @@
-name: AKS Destroy
+name: AKS Deploy
 
 on:
   workflow_dispatch

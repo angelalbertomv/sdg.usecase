@@ -1,4 +1,4 @@
-name: AKS Airflow Docker Build
+name: Airflow DAGs Build
 
 on:
   workflow_dispatch
