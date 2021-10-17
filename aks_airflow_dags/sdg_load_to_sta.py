@@ -37,5 +37,5 @@ with DAG(
         task_id='load_to_storage',
         name='load_to_storage',        
         namespace='airflow',
-        image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag:test01',
+        image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag:test02',
     )
