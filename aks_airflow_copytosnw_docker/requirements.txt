@@ -1,1 +1,2 @@
+pyarrow==5.0.0
 snowflake-connector-python
