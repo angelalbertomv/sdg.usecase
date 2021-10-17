@@ -34,8 +34,8 @@ with DAG(
 ) as dag:
 
     task = KubernetesPodOperator(
-        task_id='load_to_storage',
-        name='load_to_storage',        
+        task_id='sta_ingestion',
+        name='STA Ingestion',        
         namespace='airflow',
         image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag2:test02',
     )
