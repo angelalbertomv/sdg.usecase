@@ -17,11 +17,11 @@ def read_root():
     return {"Hello": "World"}
 
 @app.get("/shares/{share_id}")
-def read_share(share_id: int, q: Optional[str] = None):
+def read_share(share_id: str, price: Optional[str] = None):
     try:
-        price = cs.cursor().execute("""select * from "SDG_DB"."SDG_USECASE"."sdl_sdgtestcase" where BUSINESS_ID={0};""".format(share_id)).fetchone()
+        price, load_date = cs.cursor().execute("""select price, load_date from "SDG_DB"."SDG_USECASE"."sdl_sdgtestcase" where BUSINESS_ID={0};""".format(share_id)).fetchone()
     finally:
         cs.close()    
     ctx.close()
     
-    return {"share_id": share_id, "price": price}
+    return {"share_id": share_id, "price": price, "load_date": load_date}
