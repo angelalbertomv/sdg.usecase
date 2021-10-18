@@ -37,5 +37,5 @@ with DAG(
         task_id='dwh_propagation',
         name='dwh_propagation',        
         namespace='airflow',
-        image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag1:v2',
+        image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag1:v3',
     )
