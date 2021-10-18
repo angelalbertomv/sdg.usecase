@@ -89,9 +89,9 @@ ingress:
       paths:
         - /api # PATH DEL MICRO
 #  tls:
-#    - secretName: opendo-tls-internet # NO TOCAR
+#    - secretName: sdgapi-tls-internet # NO TOCAR
 #      hosts:
-#        - cce-service-usa.internal.dgo.dev.pagonxt.corp # BASE PATH DEL PROYECTO
+#        - aks.sdgusecase.tk # BASE PATH DEL PROYECTO
 
 nodeSelector: {}
 
