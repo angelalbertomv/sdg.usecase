@@ -1,4 +1,4 @@
-name: Airflow DAGs Build
+name: AFW DAGs Build
 
 on:
   workflow_dispatch
