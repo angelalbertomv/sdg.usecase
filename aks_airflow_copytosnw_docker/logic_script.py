@@ -12,7 +12,7 @@ try:
      FROM ( SELECT 'TESLA', current_timestamp(), PARSE_JSON($1), 'test'
             FROM @SDG_DB.PUBLIC.SDG_TESTSTAGE/stage/tesla )
   file_format = (type = json);''')
-    cs.execute('''merge into "SDG_DB"."SDG_USECASE"."sdl_sdgtestcase" des using (select PAYLOAD:currentPrice as price, BUSINESS_ID, max(load_date) from "SDG_DB"."SDG_USECASE"."adl_sdgtestcase" group by PAYLOAD:currentPrice, BUSINESS_ID) ori
+    cs.execute('''merge into "SDG_DB"."SDG_USECASE"."sdl_sdgtestcase" des using (select PAYLOAD:currentPrice as price, BUSINESS_ID, max(load_date) as load_date from "SDG_DB"."SDG_USECASE"."adl_sdgtestcase" group by PAYLOAD:currentPrice, BUSINESS_ID) ori
     on ori.business_id = des.business_id
     when matched then 
         update set des.price = ori.price, des.load_date = ori.load_date
