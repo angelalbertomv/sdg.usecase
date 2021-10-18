@@ -11,7 +11,7 @@ image:
   # URL harbor image without version: 1.0.3
   repository: ghcr.io/angelalbertomv/sdg.usecase/sdg_api
   pullPolicy: Always
-  tag: test02
+  tag: v1
 ## Uncomment to download image private #DONT TOUCH
 #imagePullSecrets:
 #  - name: regcred
