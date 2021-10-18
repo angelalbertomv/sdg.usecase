@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: master
     env:
-      NAMESPACE: ingress-nginx      
+      NAMESPACE: sdgapi      
     steps:
     - name: Check environment variables
       run: |
@@ -44,6 +44,7 @@ jobs:
         CHART_DESC: sdgapi
         VALUES_NAME: api_deploy/values.yaml
       run: |
+        kubectl create namespace sdgapi --dry-run=client -o yaml | kubectl apply -f -
         PARAMS='--dry-run'
         if [ "${{github.event_name}}" = "push" ]; then
           PARAMS=''

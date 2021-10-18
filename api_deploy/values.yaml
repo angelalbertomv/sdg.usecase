@@ -5,13 +5,13 @@
 
 replicaCount: 1
 
-nameSpace: opendo # AKS
+nameSpace: sdgapi # AKS
 
 image:
   # URL harbor image without version: 1.0.3
-  repository: ghcr.io/angelalbertomv/sdg.usecase/sdg_api:test01
+  repository: ghcr.io/angelalbertomv/sdg.usecase/sdg_api
   pullPolicy: Always
-  tag: develop
+  tag: test01
 ## Uncomment to download image private #DONT TOUCH
 #imagePullSecrets:
 #  - name: regcred
