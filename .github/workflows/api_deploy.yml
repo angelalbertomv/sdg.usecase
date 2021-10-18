@@ -45,8 +45,5 @@ jobs:
         VALUES_NAME: api_deploy/values.yaml
       run: |
         kubectl create namespace sdgapi --dry-run=client -o yaml | kubectl apply -f -
-        PARAMS='--dry-run'
-        if [ "${{github.event_name}}" = "push" ]; then
-          PARAMS=''
-        fi
+        
         helm upgrade -i --history-max 3 $PARAMS -n $NAMESPACE $CHART_DESC $CHART_NAME -f $VALUES_NAME  
