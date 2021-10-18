@@ -23,10 +23,10 @@ jobs:
       - name: Docker build and push
         working-directory: aks_airflow_copytosnw_docker    
         run: |
-          docker build --tag="ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag1:test03" -t dag_image .
-          docker push ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag1:test03
+          docker build --tag="ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag1:v1" -t dag_image .
+          docker push ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag1:v1
       - name: Docker build and push
         working-directory: aks_airflow_loadtostorage_docker    
         run: |
-          docker build --tag="ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag2:test03" -t dag_image .
-          docker push ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag2:test03
+          docker build --tag="ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag2:v1" -t dag_image .
+          docker push ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag2:v1

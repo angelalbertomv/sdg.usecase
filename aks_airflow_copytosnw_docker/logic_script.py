@@ -15,9 +15,9 @@ try:
     cs.execute('''merge into "SDG_DB"."SDG_USECASE"."sdl_sdgtestcase" des using (select PAYLOAD:currentPrice as price, BUSINESS_ID, max(load_date) from "SDG_DB"."SDG_USECASE"."adl_sdgtestcase" group by PAYLOAD:currentPrice, BUSINESS_ID) ori
     on ori.business_id = des.business_id
     when matched then 
-        update set des.price = ori.price
+        update set des.price = ori.price, des.load_date = ori.load_date
     when not matched then 
-        insert (BUSINESS_ID,price) values (ori.BUSINESS_ID,ori.price);''')
+        insert (BUSINESS_ID,price, load_date) values (ori.BUSINESS_ID,ori.price, ori.load_date);''')
 
 finally:
     cs.close()
