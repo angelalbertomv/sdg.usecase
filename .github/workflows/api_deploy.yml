@@ -1,0 +1,51 @@
+name: API Deploy
+
+on:
+  workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: master
+    env:
+      NAMESPACE: ingress-nginx      
+    steps:
+    - name: Check environment variables
+      run: |
+        if [ "${{ env.NAMESPACE}}" = "example-0" ] && [ "${{ github.event.repository.name }}" != "deploy-k8s-apps" ]; then
+          echo "Change default environment variable NAMESPACE value"
+          exit -1       
+        fi
+        if [[ -z " ${{ secrets.K8S_FQDN }}" ]]; then
+          echo "Define environment variable K8S_FQDN in github environments"
+          exit -4
+        elif [[ -z "${{ secrets.K8S_TOKEN }}" ]]; then          
+         echo "Define environment variable K8S_TOKEN in github environments"
+          exit -5
+        fi  
+    - name: Clean helm directory
+      shell: bash
+      run: rm -rf ~/.helm
+    - name: Checkout
+      uses: actions/checkout@v2      
+    - name: Setup context k8s
+      uses: azure/k8s-set-context@v1
+      with:
+        method: service-account
+        k8s-url: ${{ secrets.K8S_FQDN }}
+        k8s-secret: "${{ secrets.K8S_TOKEN }}"
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: '3.5.2'
+    - name: Helm Install/Upgrade API
+      env:
+        CHART_NAME: api_deploy/
+        CHART_DESC: sdg_api
+        VALUES_NAME: api_deploy/values.yaml
+      run: |
+        PARAMS='--dry-run'
+        if [ "${{github.event_name}}" = "push" ]; then
+          PARAMS=''
+        fi
+        helm upgrade -i --history-max 3 $PARAMS -n $NAMESPACE $CHART_DESC $CHART_NAME -f $VALUES_NAME  
