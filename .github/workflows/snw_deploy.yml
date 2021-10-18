@@ -43,7 +43,7 @@ jobs:
           -backend-config=storage_account_name=$ARM_BACKEND_NAME -backend-config=resource_group_name=$ARM_BACKEND_RG \
           -backend-config=arm_subscription_id=$ARM_SUBSCRIPTION_ID -backend-config=arm_tenant_id=$ARM_TENANT_ID \
           -backend-config=arm_client_id=$ARM_CLIENT_ID -backend-config=arm_client_secret=$ARM_CLIENT_SECRET
-        #terraform force-unlock -force 1d5a9877-5b18-7ef5-9b09-5490852efa3c 
+        terraform force-unlock -force 5361486f-5ff3-cd1c-dde2-63dc6219389d
         terraform apply -auto-approve -input=false
       env:
         SNOWFLAKE_PASSWORD: .Kirschner21
