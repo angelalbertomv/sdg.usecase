@@ -37,5 +37,5 @@ with DAG(
         task_id='sta_ingestion',
         name='sta_ingestion',        
         namespace='airflow',
-        image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag2:test02',
+        image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag2:test03',
     )
