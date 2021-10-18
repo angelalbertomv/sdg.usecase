@@ -18,7 +18,7 @@ locals {
   schema_name    = "SDG_USECASE"
   database_name  = "SDG_DB"
   table_name     = "adl_sdgtestcase"
-  table_name2     = "sdl_sdgtestcase"  
+  table_name2    = "sdl_sdgtestcase"
 }
 
 resource "snowflake_database" "db" {
