@@ -41,7 +41,7 @@ jobs:
     - name: Helm Install/Upgrade API
       env:
         CHART_NAME: api_deploy/
-        CHART_DESC: sdg_api
+        CHART_DESC: sdgapi
         VALUES_NAME: api_deploy/values.yaml
       run: |
         PARAMS='--dry-run'
