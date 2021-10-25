@@ -114,5 +114,5 @@ resource "azurerm_eventhub" "eventhub" {
       blob_container_name = "stageunicc"
       storage_account_id  = "/subscriptions/013baf31-283f-4e64-a3e2-2e638a891d02/resourceGroups/sdgusecase/providers/Microsoft.Storage/storageAccounts/stasdgusecase"
     }
-  }  
+  }
 }
