@@ -86,8 +86,8 @@ resource "azurerm_dns_zone" "sdgusecase" {
 
 resource "azurerm_eventhub_namespace" "eventnamespace" {
   name                = "unicctestcasenms"
-  location            = azurerm_resource_group.k8s.location
-  resource_group_name = azurerm_resource_group.k8s.name
+  location            = data.azurerm_resource_group.k8s.location
+  resource_group_name = data.azurerm_resource_group.k8s.name
   sku                 = "Standard"
   capacity            = 1
 
@@ -99,7 +99,7 @@ resource "azurerm_eventhub_namespace" "eventnamespace" {
 resource "azurerm_eventhub" "eventhub" {
   name                = "shares_prices"
   namespace_name      = azurerm_eventhub_namespace.eventnamespace.name
-  resource_group_name = azurerm_resource_group.k8s.name
+  resource_group_name = data.azurerm_resource_group.k8s.name
   partition_count     = 2
   message_retention   = 1
 
