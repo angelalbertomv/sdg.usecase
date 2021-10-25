@@ -110,7 +110,7 @@ resource "azurerm_eventhub" "eventhub" {
     destination {
       name = "EventHubArchive.AzureBlockBlob"
 
-      archive_name_format = "{Namespace}/{EventHub}/{Year}-{Month}-{Day}T{Hour}:{Minute}:{Second}"
+      archive_name_format = "{Namespace}/{EventHub}/{PartitionId}/{Year}-{Month}-{Day}T{Hour}:{Minute}:{Second}"
       blob_container_name = "stageunicc"
       storage_account_id  = "/subscriptions/013baf31-283f-4e64-a3e2-2e638a891d02/resourceGroups/sdgusecase/providers/Microsoft.Storage/storageAccounts/stasdgusecase"
     }
