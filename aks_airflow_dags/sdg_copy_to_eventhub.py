@@ -26,7 +26,7 @@ args = {
 }
 
 with DAG(
-    dag_id='sdg_test_case_dwhpropagation_v01_test',
+    dag_id='sdg_test_case_eventhub_v01',
     default_args=args,
     schedule_interval=None,
     start_date=days_ago(2),
@@ -37,5 +37,5 @@ with DAG(
         task_id='dwh_propagation',
         name='dwh_propagation',        
         namespace='airflow',
-        image='ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag1:v3',
+        image='ghcr.io/angelalbertomv/sdg.usecase/unicc:v1',
     )

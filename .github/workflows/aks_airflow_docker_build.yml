@@ -30,3 +30,8 @@ jobs:
         run: |
           docker build --tag="ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag2:v1" -t dag_image .
           docker push ghcr.io/angelalbertomv/sdg.usecase/sdgusecasedag2:v1
+      - name: Docker build and push UNICC
+        working-directory: aks_airflow_loadtostorage_eventhub_docker    
+        run: |
+          docker build --tag="ghcr.io/angelalbertomv/sdg.usecase/unicc:v1" -t dag_image .
+          docker push ghcr.io/angelalbertomv/sdg.usecase/unicc:v1          
