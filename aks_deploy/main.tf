@@ -83,12 +83,23 @@ resource "azurerm_dns_zone" "sdgusecase" {
   name                = "sdgusecase.tk"
   resource_group_name = data.azurerm_resource_group.k8s.name
 }
-/*
-resource "azurerm_dns_a_record" "aks" {
-  name                = "aks"
-  zone_name           = azurerm_dns_zone.sdgusecase.name
-  resource_group_name = data.azurerm_resource_group.k8s.name
-  ttl                 = 300
-  records             = ["20.103.185.63"]
+
+resource "azurerm_eventhub_namespace" "eventnamespace" {
+  name                = "unicctestcasenms"
+  location            = azurerm_resource_group.k8s.location
+  resource_group_name = azurerm_resource_group.k8s.name
+  sku                 = "Standard"
+  capacity            = 1
+
+  tags = {
+    environment = "UNICC"
+  }
 }
-*/
+
+resource "azurerm_eventhub" "eventhub" {
+  name                = "unicctestcasenms"
+  namespace_name      = azurerm_eventhub_namespace.eventnamespace.name
+  resource_group_name = azurerm_resource_group.k8s.name
+  partition_count     = 2
+  message_retention   = 1
+}
