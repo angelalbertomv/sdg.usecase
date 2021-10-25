@@ -97,9 +97,22 @@ resource "azurerm_eventhub_namespace" "eventnamespace" {
 }
 
 resource "azurerm_eventhub" "eventhub" {
-  name                = "unicctestcasenms"
+  name                = "shares_prices"
   namespace_name      = azurerm_eventhub_namespace.eventnamespace.name
   resource_group_name = azurerm_resource_group.k8s.name
   partition_count     = 2
   message_retention   = 1
+
+  capture_description {
+    enabled  = true
+    encoding = "Avro"
+
+    destination {
+      name = "EventHubArchive.AzureBlockBlob"
+
+      archive_name_format = "{Namespace}/{EventHub}/{PartitionId}/{Year}-{Month}-{Day}T{Hour}:{Minute}:{Second}"
+      blob_container_name = "stageunicc"
+      storage_account_id  = "/subscriptions/013baf31-283f-4e64-a3e2-2e638a891d02/resourceGroups/sdgusecase/providers/Microsoft.Storage/storageAccounts/stasdgusecase"
+    }
+  }  
 }
