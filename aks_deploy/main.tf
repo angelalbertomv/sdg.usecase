@@ -118,16 +118,3 @@ resource "azurerm_eventhub" "eventhub" {
   }
 }
 
-resource "azurerm_storage_data_lake_gen2_filesystem" "uniccdlg" {
-  name               = "uniccdlg"
-  storage_account_id = "/subscriptions/013baf31-283f-4e64-a3e2-2e638a891d02/resourceGroups/sdgusecase/providers/Microsoft.Storage/storageAccounts/stasdgusecase"
-}
-
-resource "azurerm_synapse_workspace" "uniccasw" {
-  name                                 = "uniccasw"
-  resource_group_name                  = data.azurerm_resource_group.k8s.name
-  location                             = data.azurerm_resource_group.k8s.location
-  storage_data_lake_gen2_filesystem_id = azurerm_storage_data_lake_gen2_filesystem.uniccdlg.id
-  sql_administrator_login              = "sqladminuser"
-  sql_administrator_login_password     = "Test01!"
-}
