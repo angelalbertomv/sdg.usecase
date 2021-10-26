@@ -84,6 +84,7 @@ resource "azurerm_dns_zone" "sdgusecase" {
   resource_group_name = data.azurerm_resource_group.k8s.name
 }
 
+/*
 resource "azurerm_eventhub_namespace" "eventnamespace" {
   name                = "unicctestcasenms"
   location            = data.azurerm_resource_group.k8s.location
@@ -95,7 +96,7 @@ resource "azurerm_eventhub_namespace" "eventnamespace" {
     environment = "UNICC"
   }
 }
-/*
+
 resource "azurerm_eventhub" "eventhub" {
   name                = "shares_prices"
   namespace_name      = azurerm_eventhub_namespace.eventnamespace.name
