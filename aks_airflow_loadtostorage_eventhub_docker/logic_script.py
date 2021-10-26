@@ -11,7 +11,7 @@ while i < 10:
 # Create a producer client to send messages to the event hub.
 # Specify a connection string to your event hubs namespace and
 # the event hub name.
-    producer = EventHubProducerClient.from_connection_string(conn_str="Endpoint=sb://unicctestcasenms.servicebus.windows.net/;SharedAccessKeyName=all;SharedAccessKey=vcKHlejNj+JzknWrEXZv8Jut9QU7puPaqFvt0KOwdjo=;EntityPath=shares_prices", eventhub_name="shares_prices")
+    producer = EventHubProducerClient.from_connection_string(conn_str="Endpoint=sb://unicctestcasenms.servicebus.windows.net/;SharedAccessKeyName=all;SharedAccessKey=kUVi+uQvuYkDPmwhGk+eIrfRo/SkRX3c7KlY7UW24/w=;EntityPath=shares_prices", eventhub_name="shares_prices")
 
     with producer:
 
