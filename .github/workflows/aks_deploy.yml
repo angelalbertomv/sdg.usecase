@@ -3,12 +3,12 @@
 # Deploys terraform configuration in `master` branch to DEV environment
 # 
 # You need to create an Environment named `DEV` with the next secrets:
-#   - ARM_BACKEND_NAME: ${{ secrets.ARM_BACKEND_NAME }}
-#   - ARM_BACKEND_RG: ${{ secrets.ARM_BACKEND_RG }}
-#   - ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-#   - ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-#   - ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-#   - ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+#   - BACKEND_NAME: ${{ secrets.BACKEND_NAME }}
+#   - BACKEND_RG: ${{ secrets.BACKEND_RG }}
+#   - SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+#   - TENANT_ID: ${{ secrets.TENANT_ID }}
+#   - CLIENT_ID: ${{ secrets.CLIENT_ID }}
+#   - CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 name: AKS Deploy
 
@@ -40,15 +40,15 @@ jobs:
       working-directory: aks_deploy
       run: |
         terraform init -no-color -backend-config=container_name=${{ env.tf_backend_container_name }} -backend-config=key=${{ env.tf_backend_tfstate_name }} \
-          -backend-config=storage_account_name=$ARM_BACKEND_NAME -backend-config=resource_group_name=$ARM_BACKEND_RG \
-          -backend-config=arm_subscription_id=$ARM_SUBSCRIPTION_ID -backend-config=arm_tenant_id=$ARM_TENANT_ID \
-          -backend-config=arm_client_id=$ARM_CLIENT_ID -backend-config=arm_client_secret=$ARM_CLIENT_SECRET
+          -backend-config=storage_account_name=$BACKEND_NAME -backend-config=resource_group_name=$BACKEND_RG \
+          -backend-config=subscription_id=$SUBSCRIPTION_ID -backend-config=tenant_id=$TENANT_ID \
+          -backend-config=client_id=$CLIENT_ID -backend-config=client_secret=$CLIENT_SECRET
         #terraform force-unlock -force 1d5a9877-5b18-7ef5-9b09-5490852efa3c 
         terraform apply -auto-approve -input=false
       env:
-        ARM_BACKEND_NAME: ${{ secrets.ARM_BACKEND_NAME }}
-        ARM_BACKEND_RG: ${{ secrets.ARM_BACKEND_RG }}
-        ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-        ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-        ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+        BACKEND_NAME: ${{ secrets.BACKEND_NAME }}
+        BACKEND_RG: ${{ secrets.BACKEND_RG }}
+        SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+        TENANT_ID: ${{ secrets.TENANT_ID }}
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
