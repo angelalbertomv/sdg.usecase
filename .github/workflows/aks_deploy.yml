@@ -16,7 +16,7 @@ on:
   workflow_dispatch
 
 env:
-  tf_backend_container_name: tfstate
+  tf_backend_container_name: tfstatetest
   tf_backend_tfstate_name: workload.tfstate
     
 jobs:
@@ -35,14 +35,14 @@ jobs:
     - uses: actions/checkout@v2
     - uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: 1.0.x
+        terraform_version: 0.14.x
     - name: Apply
       working-directory: aks_deploy
       run: |
-        terraform init -no-color -backend-config=container_name=${{ env.tf_backend_container_name }} -backend-config=key=${{ env.tf_backend_tfstate_name }} \
-          -backend-config=storage_account_name=$BACKEND_NAME -backend-config=resource_group_name=$ARM_BACKEND_RG \
-          -backend-config=subscription_id=$ARM_SUBSCRIPTION_ID -backend-config=tenant_id=$ARM_TENANT_ID \
-          -backend-config=client_id=$ARM_CLIENT_ID -backend-config=client_secret=$ARM_CLIENT_SECRET
+        terraform init -reconfigure -no-color -backend-config=container_name=${{ env.tf_backend_container_name }} -backend-config=key=${{ env.tf_backend_tfstate_name }} \
+          -backend-config=storage_account_name=$ARM_BACKEND_NAME -backend-config=resource_group_name=$ARM_BACKEND_RG \
+          -backend-config=arm_subscription_id=$ARM_SUBSCRIPTION_ID -backend-config=arm_tenant_id=$ARM_TENANT_ID \
+          -backend-config=arm_client_id=$ARM_CLIENT_ID -backend-config=arm_client_secret=$ARM_CLIENT_SECRET
         #terraform force-unlock -force 1d5a9877-5b18-7ef5-9b09-5490852efa3c 
         terraform apply -auto-approve -input=false
       env:

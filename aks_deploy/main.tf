@@ -84,7 +84,7 @@ resource "azurerm_dns_zone" "sdgusecase" {
   resource_group_name = data.azurerm_resource_group.k8s.name
 }
 
-/*
+
 resource "azurerm_eventhub_namespace" "eventnamespace" {
   name                = "unicctestcasenms"
   location            = data.azurerm_resource_group.k8s.location
@@ -131,4 +131,3 @@ resource "azurerm_synapse_workspace" "uniccasw" {
   sql_administrator_login              = "sqladminuser"
   sql_administrator_login_password     = "Test01!"
 }
-*/
