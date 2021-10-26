@@ -95,7 +95,7 @@ resource "azurerm_eventhub_namespace" "eventnamespace" {
     environment = "UNICC"
   }
 }
-
+/*
 resource "azurerm_eventhub" "eventhub" {
   name                = "shares_prices"
   namespace_name      = azurerm_eventhub_namespace.eventnamespace.name
@@ -116,7 +116,7 @@ resource "azurerm_eventhub" "eventhub" {
     }
   }
 }
-/*
+
 resource "azurerm_storage_data_lake_gen2_filesystem" "uniccdlg" {
   name               = "uniccdlg"
   storage_account_id = "/subscriptions/013baf31-283f-4e64-a3e2-2e638a891d02/resourceGroups/sdgusecase/providers/Microsoft.Storage/storageAccounts/stasdgusecase"
