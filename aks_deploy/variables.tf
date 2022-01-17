@@ -1,5 +1,5 @@
 variable "client_id" {
-  default = "cb656ed1-c7a6-4d09-be70-bd9472a3a02a"
+  default = "bb19071b-61f3-4b5b-92dd-f3c8fef1f663"
 }
 
 variable "akv_id" {

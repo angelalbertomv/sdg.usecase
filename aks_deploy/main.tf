@@ -27,7 +27,7 @@ resource "azurerm_log_analytics_workspace" "law" {
 }
 
 data "azurerm_key_vault_secret" "client_secret" {
-  name         = var.client_id
+  name         = "spn"
   key_vault_id = var.akv_id
 }
 
