@@ -3,7 +3,7 @@ variable "client_id" {
 }
 
 variable "akv_id" {
-  default = "/subscriptions/013baf31-283f-4e64-a3e2-2e638a891d02/resourceGroups/sdgusecase/providers/Microsoft.KeyVault/vaults/akvaamvsampledatastack"
+  default = "/subscriptions/013baf31-283f-4e64-a3e2-2e638a891d02/resourceGroups/sampledatastack/providers/Microsoft.KeyVault/vaults/akvaamvsampledatastack"
 }
 
 variable "agent_count" {
