@@ -79,12 +79,12 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   }
 }
 
-resource "azurerm_dns_zone" "sdgusecase" {
-  name                = "sdgusecase.tk"
+resource "azurerm_dns_zone" "sampledatastack" {
+  name                = "sampledatastack.tk"
   resource_group_name = data.azurerm_resource_group.k8s.name
 }
 
-
+/*
 resource "azurerm_eventhub_namespace" "eventnamespace" {
   name                = "unicctestcasenms"
   location            = data.azurerm_resource_group.k8s.location
@@ -117,4 +117,4 @@ resource "azurerm_eventhub" "eventhub" {
     }
   }
 }
-
+*/

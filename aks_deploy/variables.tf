@@ -15,15 +15,15 @@ variable "ssh_public_key" {
 }
 
 variable "dns_prefix" {
-  default = "sdgusecase"
+  default = "aamvsampledatastack"
 }
 
 variable "cluster_name" {
-  default = "akssdgusecase"
+  default = "akssampledatastack"
 }
 
 variable "resource_group_name" {
-  default = "sdgusecase"
+  default = "sampledatastack"
 }
 
 variable "location" {
