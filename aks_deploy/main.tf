@@ -79,8 +79,8 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   }
 }
 
-resource "azurerm_dns_zone" "sampledatastack" {
-  name                = "sampledatastack.tk"
+resource "azurerm_dns_zone" "aamvsampledatastack" {
+  name                = "aamvsampledatastack.tk"
   resource_group_name = data.azurerm_resource_group.k8s.name
 }
 
