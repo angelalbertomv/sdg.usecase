@@ -32,7 +32,7 @@ jobs:
       uses: azure/k8s-set-context@v1
       with:
         method: kubeconfig
-        k8s-url: ${{ secrets.K8S_KUBECONFIG }}
+        kubeconfig: ${{ secrets.K8S_KUBECONFIG }}
     - name: Install Helm
       uses: azure/setup-helm@v1
       with:
