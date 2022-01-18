@@ -31,9 +31,8 @@ jobs:
     - name: Setup context k8s
       uses: azure/k8s-set-context@v1
       with:
-        method: service-account
-        k8s-url: ${{ secrets.K8S_FQDN }}
-        k8s-secret: "${{ secrets.K8S_TOKEN }}"
+        method: kubeconfig
+        kubeconfig: ${{ secrets.K8S_KUBECONFIG }}
     - name: Install Helm
       uses: azure/setup-helm@v1
       with:
